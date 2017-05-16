@@ -14,7 +14,7 @@ gulp.task('testLess', function () {
 	//多个文件以数组形式传入
         gulp.src('src/less/index.less') //该任务针对的文件
         .pipe(less()) //该任务调用的模块
-        .pipe(gulp.dest('src/css'))//将会在src/css下生成index.css
+        .pipe(gulp.dest('dist/css'))//将会在src/css下生成index.css
         .pipe(reload({stream:true}));//相当于.pipe(browserSync.stream());该 stream 方法返回一个变换流，并且可以充当一次或多个文件。添加自动刷新时需要添加这一句
 });
      
@@ -31,7 +31,7 @@ gulp.task('testHtmlmin', function () {
     };
     gulp.src('src/html/*.html')
         .pipe(htmlmin(options))
-        .pipe(gulp.dest('dist/html'))
+        .pipe(gulp.dest('dist'))
         .pipe(reload({stream:true}));
 });
 
@@ -88,7 +88,7 @@ gulp.task('browser-sync', function() {
 //         proxy: "你的域名或IP"
 //     });
 // });
-gulp.task('default',['testLess', 'testHtmlmin','testjsmin','testConcat','testImagemin','browser-sync']);
+gulp.task('default',['testLess', 'testHtmlmin','testjsmin','testImagemin','browser-sync']);
 //gulp.task('default',['testLess', 'elseTask']);定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务
  
 //gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数
